@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>UTech Jamaica - Frequently Asked Questions</title>
+<style>
+  :root { 
+    --primary-blue: #003366; 
+    --secondary-yellow: #FFCC00;
+    --light-blue: #E6F2FF;
+    --dark-blue: #002244;
+    --light-yellow: #FFF9E6;
+    --border: #D1D1D1;
+    --bg: #F8F8F8;
+    --fg: #333333;
+    --muted: #666666;
+  }
+  * { box-sizing: border-box; }
+  body { 
+    font-family: Arial, sans-serif; 
+    margin: 0;
+    padding: 0;
+    color: var(--fg);
+    line-height: 1.6;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  header {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  h1 { 
+    margin: 0 0 10px; 
+    font-size: 32px;
+    color: white;
+  }
+  .welcome-message {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  h2 { 
+    margin: 0;
+    font-size: 22px;
+    color: var(--primary-blue);
+  }
+  .section-note { 
+    color: var(--muted); 
+    font-size: 14px; 
+    margin: 5px 0 15px;
+  }
+  .faq-search { 
+    margin: 20px 0; 
+    width: 100%; 
+    padding: 12px 16px; 
+    font-size: 16px; 
+    border: 2px solid var(--border); 
+    border-radius: 8px;
+    background-color: white;
+  }
+  .faq-section {
+    margin-bottom: 30px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .section-header {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .section-header:hover {
+    background-color: var(--dark-blue);
+  }
+  .section-header h2 {
+    margin: 0;
+    color: white;
+  }
+  .toggle-icon {
+    font-size: 20px;
+    transition: transform 0.3s;
+  }
+  .section-header[aria-expanded="true"] .toggle-icon {
+    transform: rotate(45deg);
+  }
+  .section-content {
+    display: none;
+    padding: 0;
+    background-color: white;
+  }
+  .faq-item { 
+    border-bottom: 1px solid var(--border);
+  }
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+  .faq-question { 
+    padding: 15px 20px; 
+    cursor: pointer; 
+    font-weight: bold;
+    background-color: var(--light-blue);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-question:hover {
+    background-color: #D9E9FF;
+  }
+  .faq-question[aria-expanded="true"] { 
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+  }
+  .faq-answer { 
+    display: none; 
+    padding: 15px 20px; 
+    background-color: white;
+  }
+  .faq-answer ul, .faq-answer ol { 
+    margin: 10px 0 10px 20px; 
+    padding-left: 15px;
+  }
+  .faq-answer li {
+    margin-bottom: 8px;
+  }
+  .muted { color: var(--muted); }
+  .payment-plans {
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .payment-plan {
+    flex: 1;
+    min-width: 250px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .payment-plan h3 {
+    margin: 0;
+    padding: 12px 15px;
+    background-color: var(--secondary-yellow);
+    color: var(--dark-blue);
+    font-size: 16px;
+  }
+  .payment-plan table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .payment-plan th, .payment-plan td {
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+  }
+  .payment-plan tr:last-child td {
+    border-bottom: none;
+  }
+  .payment-plan th {
+    background-color: var(--light-yellow);
+  }
+  .highlight {
+    background-color: var(--light-yellow);
+    padding: 2px 4px;
+    border-radius: 3px;
+  }
+  .email {
+    font-family: monospace;
+    color: var(--primary-blue);
+    font-weight: bold;
+  }
+  .no-results {
+    text-align: center;
+    padding: 30px;
+    color: var(--muted);
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .payment-plans {
+      flex-direction: column;
+    }
+    .payment-plan {
+      min-width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>University of Technology, Jamaica</h1>
+    <div class="welcome-message">
+      Welcome to the UTech's Frequently Asked Questions page. Here you'll find answers to common questions about admissions, registration, fees, examinations, and other services. Use the search bar below to quickly find specific information or browse through our categorized questions.
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <input id="faqSearch" class="faq-search" type="text" placeholder="Search all FAQs (questions & answers)..." aria-label="Search FAQs" />
+  <div id="noResults" class="no-results">No matching FAQs found. Please try a different search term.</div>
+
+
+  <div class="faq-section">
+    <div class="section-header" aria-expanded="false" data-section="admissions">
+      <h2>Admissions</h2>
+      <span class="toggle-icon">+</span>
+    </div>
+    <div class="section-content">
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">How do I apply?</div>
+      <div class="faq-answer">
+        Apply online via the University's website and submit <em>certified</em> supporting documents (stamped/signed by a Minister of Religion, Justice of the Peace, Attorney-at-Law, or Medical Practitioner). Original documents should only be submitted upon request. Ensure all uploads are certified.<br/><br/>
+        <strong>Supporting documents include:</strong>
+        <ul>
+          <li>Academic certificates</li>
+          <li>Birth certificate (Jamaican Birth Certificate or Jamaican Certificate of Citizenship)</li>
+          <li>Marriage certificate (if applicable)</li>
+          <li>Tax Registration Number (TRN)</li>
+          <li>National ID (Passport, Driver's Licence or Voter's ID) if applicable</li>
+          <li>Transcripts / Progress Report:
+            <ul>
+              <li><strong>Current UTech students/alumni applying for a new Undergraduate course:</strong> do not send a transcript; Admissions will attach your progress report.</li>
+              <li><strong>Current UTech students/alumni applying for a new Postgraduate course:</strong> Admissions will request your transcript internally from the Student Records Office.</li>
+              <li><strong>New prospective students (never attended UTech):</strong> submit official transcript(s) from previous tertiary institution(s) by the application deadline. (No secondary-school transcript is required.)</li>
+            </ul>
+          </li>
+        </ul>
+        Forms not properly completed, without proof of processing fee (for manual submissions), or without required documentation will not be processed.
+        <p><strong>*</strong> Original documents should only be submitted upon request by the University. Documents tampered with will not be accepted, and the applicant will forfeit chances of admission to the University.</p>
+    <p><strong>*</strong> Ensure that all supporting documents are certified (stamped and signed by a Justice of the Peace or Notary public) before uploading them with the application.</p>
+      </div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Is online my only option to apply?</div>
+      <div class="faq-answer">If you are unable to apply online, you may print an application form from the University's website or collect one from the Office of Admissions and Enrolment Management (Mon–Fri, 8:00 am–4:00 pm).</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">How can I submit my supporting documents?</div>
+      <div class="faq-answer">
+        <ol>
+          <li>Email as attachments to <span class="email">applicationdocuments@utech.edu.jm</span></li>
+          <li>Registered mail or courier to: Admissions and Enrolment, University of Technology, Jamaica, 237 Old Hope Road, Kingston</li>
+          <li>Secure online document portal</li>
+          <li>Deliver in person (Papine campus or Western Campus, 17 Dome Street, Montego Bay)</li>
+        </ol>
+      </div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">What is the cost of the application?</div>
+      <div class="faq-answer">Non-refundable fee: <strong>JA$1,000</strong> (Jamaican residents) or <strong>US$40</strong> (non-Jamaicans). Pay at Accounts before collecting a form or upon submitting a downloaded form.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">My status shows "expired." How do I resume studies?</div>
+      <div class="faq-answer">"Expired" means you did not meet award requirements within the maximum time. You may re-apply for readmission; any award conferred after completion is subject to the Transfer & Exemption Policy. <em>Maximum permissible time is the prescribed duration + two years.</em></div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">When does the application period start?</div>
+      <div class="faq-answer">October 1 (or first weekday in October).</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">What are the application deadlines?</div>
+      <div class="faq-answer">
+        <ul>
+          <li><strong>Early Bird:</strong> December 1 (or first weekday of the month)</li>
+          <li><strong>Regular:</strong> March 31 (or last weekday of the month)</li>
+        </ul>
+        Apply early for priority consideration (especially oversubscribed programmes, summer, and international applicants).
+      </div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">When will I receive a decision?</div>
+      <div class="faq-answer">
+        <ul>
+          <li>Early Bird: by <strong>January 31</strong></li>
+          <li>Regular: by <strong>June 30</strong></li>
+          <li>Summer courses: by <strong>March 30</strong></li>
+        </ul>
+        Queries: <span class="email">admissions@utech.edu.jm</span>.
+      </div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Do you accept late applications?</div>
+      <div class="faq-answer">Yes, subject to space availability and you meeting qualifications, up to the start of the academic year. Normal procedures apply.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Can I apply to multiple courses of study?</div>
+      <div class="faq-answer">You may select a second choice if space is available.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">I was previously denied—should I reapply?</div>
+      <div class="faq-answer">Yes. Applications apply only to that academic year; resubmit the required documents with a new application.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Is there an age requirement?</div>
+      <div class="faq-answer">Applicants must meet matriculation requirements and be at least <strong>17 years old</strong> by December of the year of admission.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">What is the ECD?</div>
+      <div class="faq-answer">A non-refundable Enrolment Commitment Deposit paid to confirm acceptance and applied to fees upon enrolment.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Entry requirements for a Bachelor's?</div>
+      <div class="faq-answer">Minimum of <strong>five (5)</strong> CSEC or GCE O-Level subjects including <strong>Mathematics</strong> and <strong>English</strong>. See programme pages for specific requirements.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Can I defer my offer?</div>
+      <div class="faq-answer">Yes. Apply for deferral via the Students Relations Management System; paying the ECD is part of approval.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">How do I get advanced placement?</div>
+      <div class="faq-answer">Holders of UCJ-accredited (or equivalent) Associate's Degrees/Diplomas may articulate with advanced standing.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Mature entry (special requirement)?</div>
+      <div class="faq-answer">Applicants <strong>25+</strong> who don't meet normal requirements may apply for mature entry based on attainments/work experience. Prior learning is assessed under the University's PLA Policy.</div></div>
+    </div>
+  </div>
+
+
+  <div class="faq-section">
+    <div class="section-header" aria-expanded="false" data-section="fees">
+      <h2>Fee Payments / Registration / Account Balance</h2>
+      <span class="toggle-icon">+</span>
+    </div>
+    <div class="section-content">
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">What is the Enrolment Commitment Deposit (ECD)?</div>
+      <div class="faq-answer">The ECD is a mandatory, non-refundable deposit toward each semester's tuition. It is required to access module selection.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">What are the ECD fees?</div>
+      <div class="faq-answer">
+        <ul>
+          <li><strong>Local students:</strong> JMD $40,000</li>
+          <li><strong>International students:</strong> USD $250</li>
+        </ul>
+      </div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Why do we pay the ECD?</div>
+      <div class="faq-answer">It signals a serious intention to enroll and represents ancillary charges applied toward overall fees.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">How would I know my tuition fees?</div>
+      <div class="faq-answer">Use the University's tuition calculator (link to be added).</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">What are the requirements to get registered?</div>
+      <div class="faq-answer">
+        <ol>
+          <li>Pay your ECD (use approved payment agencies only).</li>
+          <li>On the Student Portal: select & confirm modules (new students usually have a fixed diet).</li>
+          <li>View fee breakdown for the semester.</li>
+          <li>Choose a payment plan, accept fee terms and conditions and terms of studentship.</li>
+          <li>Pay tuition based on the plan selected. <em>Financial clearance updates in ~2 clear business days (Mon–Fri).</em></li>
+        </ol>
+      </div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Are books included in tuition?</div>
+      <div class="faq-answer">No.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Do I have to pay tuition in full at the start?</div>
+      <div class="faq-answer">No. A payment schedule/plan is posted each semester on the portal; tuition depends on your registered modules.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Will I receive financial clearance without paying at least 50%?</div>
+      <div class="faq-answer">No. You need <strong>≥ 50%</strong> payment to receive clearance and complete registration/access services.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Will I be able to sit final exams after paying only 50%?</div>
+      <div class="faq-answer">No. <strong>Full tuition</strong> must be paid to sit final exams.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">What happens if I can't pay the remaining 50% before finals?</div>
+      <div class="faq-answer">You will not be allowed to sit exams; access to timetables/services may be denied. Modules may be removed and <strong>50%</strong> becomes due. If in difficulty, contact the Department of Student Financing: <span class="email">fincustomersupport@utech.edu.jm</span>.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Do payments at NCB/Paymaster/UTech post immediately for clearance?</div>
+      <div class="faq-answer">No. Allow <strong>2 clear business days</strong> (Mon–Fri) for processing.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">How do I query my account/balance?</div>
+      <div class="faq-answer">Log in to the Student Portal → <em>Student</em> tab → <em>Available Reports</em> → <em>Account Balance Report</em>. For help email <span class="email">fincustomersupport@utech.edu.jm</span>.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">How do I request a fee breakdown letter for a financial institution?</div>
+      <div class="faq-answer">Email <span class="email">feeestimate@utech.edu.jm</span>. Processing typically takes a minimum of five (5) to seven (10) working days.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">If my account is in arrears, can I sit final exams?</div>
+      <div class="faq-answer">
+        <ul>
+          <li><strong>Self-financed / partially sponsored:</strong> All fees must be cleared to sit exams.</li>
+          <li><strong>Fully sponsored:</strong> Allowed to sit if fully covered by sponsor/scholarship.</li>
+          <li><strong>SLB loan:</strong> Allowed if fees do not exceed loan; otherwise pay the difference.</li>
+        </ul>
+      </div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">What are the late payment consequences?</div>
+      <div class="faq-answer">Late payments attract a <strong>2% fee</strong> on the remaining balance (calculated on the second half of tuition). Students must pay 50% to register and the second 50% in full to sit finals.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">What account number do I use at payment agencies?</div>
+      <div class="faq-answer">Agencies have the University's account numbers. Provide: <strong>Your Name</strong>, <strong>Student ID</strong> (this is the account number for NCB Bill Pay), <strong>Institution</strong> (University of Technology, Jamaica), and <strong>Payment Type</strong> (tuition/boarding).</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">How do I apply for an academic record document (for bank, etc.)?</div>
+      <div class="faq-answer">Via the website → <em>Online Academic Record Request System</em>. Pay only through the agencies listed on the application page.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">If an agency remits to UTech after the due date, will I be charged a late fee?</div>
+      <div class="faq-answer">No, if <em>your</em> payment to the agency was on time. Late remittance is between the University and the agency.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">I overpaid. How do I get a refund?</div>
+      <div class="faq-answer">Submit the electronic <em>Refund Application</em> via the Student Portal → upload required documents and receipts to <span class="email">refundapplication@utech.edu.jm</span>. Minimum processing time: <strong>21 working days</strong>.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Can I register with an outstanding balance?</div>
+      <div class="faq-answer">No. Settle all outstanding balances and pay the mandatory ECD to access module selection.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">If I already have health insurance, do I still pay the fee on my breakdown?</div>
+      <div class="faq-answer">Yes. No student is exempt; this provides an additional policy that can be used alongside existing coverage.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">I paid per my fee breakdown—am I registered?</div>
+      <div class="faq-answer">No. You are registered only after completing the <strong>10-step enrolment</strong> process in the Student Portal.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">If I am partially sponsored, can I make part-payments?</div>
+      <div class="faq-answer">Follow the payment plan posted to your portal by the Department of Student Financing.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Can I register with a Commitment Letter?</div>
+      <div class="faq-answer">Yes, once the letter is approved by a Finance Officer or the Financial Aid Office.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Can I pay my fees in USD if quoted in JMD?</div>
+      <div class="faq-answer">Yes.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">I'm overseas. How can I pay?</div>
+      <div class="faq-answer">
+        Wire transfer to NCB Matilda's Corner, Kingston 6, Jamaica (SWIFT: <span class="highlight">JNCBJMKX</span>).<br/><br/>
+        <strong>Accounts:</strong>
+        <ul>
+          <li>US$ payments: <span class="highlight">371060375</span></li>
+          <li>JA$ payments: <span class="highlight">371360247</span></li>
+        </ul>
+        Include: Student's <em>Name</em>, <em>ID Number</em>, and payment type ("Tuition" or "Boarding"). Fax receipt/confirmation to Student Receivables <span class="highlight">876-970-2302</span>.<br/>
+        Transfers may take up to ~15 working days; bank charges are deducted before applying to your account.
+      </div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Can tuition/boarding be paid at the on-campus Cashier?</div>
+      <div class="faq-answer">No. Pay via approved agencies: UTech Online Payment Portal, Paymaster, Bill Express, NCB Bill Pay, or JN Bank.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Can I make part-payment for accommodation?</div>
+      <div class="faq-answer">Accommodation is quoted per semester; the University payment plan outlines required installments each semester.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">How do I get an official statement of my account balance?</div>
+      <div class="faq-answer">Request via <span class="email">feeestimate@utech.edu.jm</span> (≈7 working days). You can also view transactions on the Student Portal.</div></div>
+
+      <h3>Payment Plans</h3>
+      <div class="payment-plans">
+        <div class="payment-plan">
+          <h3>Undergraduate Students</h3>
+          <table>
+            <tr><th>Plan A</th><td>100%</td></tr>
+            <tr><th>Plan B</th><td>1st: 30%<br>2nd: 30%<br>3rd: 20%<br>4th: 20%</td></tr>
+          </table>
+        </div>
+        <div class="payment-plan">
+          <h3>Postgraduate Students</h3>
+          <table>
+            <tr><th>Plan A</th><td>100%</td></tr>
+            <tr><th>Plan B</th><td>1st: 30%<br>2nd: 30%<br>3rd: 20%<br>4th: 20%</td></tr>
+          </table>
+        </div>
+        <div class="payment-plan">
+          <h3>DMD Students</h3>
+          <table>
+            <tr><th>Plan A</th><td>100%</td></tr>
+            <tr><th>Plan B</th><td>1st: 20%<br>2nd: 20%<br>3rd: 20%<br>4th: 20%<br>5th: 20%</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="faq-section">
+    <div class="section-header" aria-expanded="false" data-section="scholarships">
+      <h2>Scholarships / Sponsorship</h2>
+      <span class="toggle-icon">+</span>
+    </div>
+    <div class="section-content">
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">How do I apply for a scholarship?</div>
+      <div class="faq-answer">
+        A Scholarship Listing is prepared each year with criteria. Application period opens ~third week of April.<br/>
+        <ul>
+          <li>Returning students (years 2–4): closes <strong>June 30</strong></li>
+          <li>New students (year 1): closes <strong>July 31</strong></li>
+        </ul>
+      </div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Can I cash/deposit a sponsor cheque at NCB if I registered with a Letter of Commitment?</div>
+      <div class="faq-answer">No. Present all such cheques to the Finance & Business Service Department (Scholarship Office) so both sponsor and student accounts can be updated.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">If my sponsor pays more than my fees, when will I get a refund?</div>
+      <div class="faq-answer">Refunds are made <em>after</em> the University receives payment from the sponsor and authorization to refund the excess to the student. (Not processed from the Letter of Commitment itself.)</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">I received a scholarship after I paid—what happens?</div>
+      <div class="faq-answer">You may be eligible for a refund. Submit a refund request using the form on the Student Portal.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">How long for a sponsor's cheque to appear on my account?</div>
+      <div class="faq-answer">Usually <strong>5–10 business days</strong> after receipt; timeline depends on delivery, verification and clearance.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Sponsor says they paid—why isn't it showing?</div>
+      <div class="faq-answer">Payments go through verification/recording/allocation. Missing or unclear proof/details can delay posting. Please check with the Sponsorship Unit.</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">Can proof of sponsorship prevent being barred while I wait?</div>
+      <div class="faq-answer">You may submit an official sponsorship letter or email confirmation for temporary clearance consideration (case-by-case).</div></div>
+
+      <div class="faq-item"><div class="faq-question" aria-expanded="false">How long to update a sponsor commitment on my record?</div>
+      <div class="faq-answer">With all required documentation received, commitments are typically updated within <strong>3–7 business days</strong>.</div></div>
+    </div>
+  </div>
+
+ 
+  <div class="faq-section">
+  <div class="section-header" aria-expanded="false" data-section="slb">
+    <h2>SLB Applicants / Loans</h2>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="section-content">
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">If I have applied for a Students' Loan am I required to pay the ECD to access module selection?</div>
+      <div class="faq-answer">Yes. All Students must pay the ECD to access module selection</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How do I know if my SLB loan is approved?</div>
+      <div class="faq-answer">Check your status on the SLB student portal.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">Do I need to notify the University of my SLB status?</div>
+      <div class="faq-answer">No. SLB communicates your loan status to the University.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What is the Loan status used by the University to update my loan to the system?</div>
+      <div class="faq-answer">Loans with status <strong>"D"</strong> are updated on the University system.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">Will I be granted financial clearance when my loan is updated on the system?</div>
+      <div class="faq-answer">Yes, loan updated on the system will grant financial clearance.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How do I know the amount SLB will pay?</div>
+      <div class="faq-answer">The approved loan amount is included in the students contract with the SLB, this amount is updated on the University system and can be viewed by students under <em>Sponsors to my accounts on the students' portal</em>.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">Will the University communicate with the SLB to provide my registration status?</div>
+      <div class="faq-answer">Yes, the University will communicate your registration status to the University.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How will SLB remit my tuition payment to the University?</div>
+      <div class="faq-answer">The SLB will make payment of your tuition based on your semester invoice, payments are made after students are registered and their registration status communicated to the SLB.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">If I pay my fees to register and then I am approved for a SLB loan during the year, when will I receive a refund?</div>
+      <div class="faq-answer">A student can only be refunded his/her portion after SLB remits payment to the University.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How will UTech, Ja. treat excess funds received from the Students' Loan Bureau?</div>
+      <div class="faq-answer">The Students' Loan Bureau is committed to paying Tuition and Exam fees only. All excess funds received must be returned to the Bureau by the University.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What will happen if the Students' Loan Bureau remits my loan short?</div>
+      <div class="faq-answer">The outstanding balance will become the student's responsibility to pay.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">If my loan is approved by the Students' Loan Bureau and I have completed all the necessary processes at the Bureau, will UTech,Ja. ensure that the Bureau remits payment on my behalf?</div>
+      <div class="faq-answer">No. It is the sole responsibility of the student to ensure that the Students' Loan Bureau remits payment to the University. Students can check with the Students Loan Bureau for disbursement information.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How will I know the actual payment that the Students' Loan Bureau remits to the University?</div>
+      <div class="faq-answer">All students whose fees are paid by the Students' Loan Bureau (SLB) must visit the student portal to view payment from their Sponsor.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">If the Students' Loan Bureau (SLB) pays my fees, will I also be awarded the 'Grant-In-Aid'?</div>
+      <div class="faq-answer">The Students' Loan Bureau awards 'Grant-In-Aid' to students after evaluating their applications. However, students should check with SLB, to see if they were approved for a grant-in-aid.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What if I only need the 'Grant-In-Aid' and not the loan?</div>
+      <div class="faq-answer">The Grant-In-Aid is approved for students deemed needy by the Students' Loan Bureau and, as such, students who do not need the Loan will not be given the Grant-In-Aid.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What will happen if I receive a full scholarship after being approved for the Students' Loan and Grant-In-Aid?</div>
+      <div class="faq-answer">The Students must complete and sign a declaration form addressed to the SLB, this will indicate whether the student keep both the loan and the scholarship or return the loan. This form must be submitted through the Scholarship Office who will prepare and submit the request to the Bureau on behalf of the students.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">If I receive an exemption for a certain number of modules will there be a reduction in my tuition fees?</div>
+      <div class="faq-answer">No. Students are not entitled to a reduction in their fees if they have received exemptions.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How do you pay to "top-up" your printing quota at SCIT, CSA, and SBLM for print credit?</div>
+      <div class="faq-answer">Pay at the Accounts Department, present your ID and state the number of pages you intend to buy. Proceed to the respective lab with your receipt.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">If my Identification card is lost, what should I do to replace it?</div>
+      <div class="faq-answer">Pay for a reprint at the Accounts Department and proceed to the Admissions Office for a memo to be prepared. Submit this memo to the Safety and Security Department for a reprint of the card.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">Can tuition and boarding fees be paid at the Cashier Unit on campus at UTech, Ja.?</div>
+      <div class="faq-answer">No, Tuition and Boarding payments are not accepted at the Cashier's Unit on campus. All tuition and or boarding fees must be paid at the approved agencies: UTECH online Payment Portal, Paymaster, Bill Express, NCB Bill payment option or JN Bank.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">Can we make part payment for accommodation?</div>
+      <div class="faq-answer">Accommodation fee breakdown is quoted per semester; the University fee payment plan will provide details of payment requirements per semester.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">Can I get an official statement of my account balance?</div>
+      <div class="faq-answer">Students are required to request a letter from the Department of Student Financing at feeestimate@utech.edu.jm. This process usually takes at least seven (7) working days. Students can also visit the Student Portal to see their transactions history.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What are the conditions to be placed on academic probation?</div>
+      <div class="faq-answer">
+        <p>A student with an accumulative GPA lower than 2.0 at the end of a semester must seek academic advisement. If the GPA at the end of the academic year is below 2.0 the student will be placed on academic probation and must remain in the level/year last registered until a GPA of 2.0 or above is achieved. The maximum number of credits, including the failed modules, which can be attempted in any semester or summer session, is 12 and 9, respectively. Students on academic probation are required to meet regularly with their assigned Academic Advisor to:</p>
+        <ul>
+          <li>Discuss reasons for unsatisfactory academic performance;</li>
+          <li>Develop strategies to achieve satisfactory academic standing and monitor progress towards that goal.</li>
+        </ul>
+        <p>A student failing to maintain a minimum accumulative GPA of 2.0 and above over two (2) consecutive years of enrolment will be discontinued from their course of study.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <div class="section-header" aria-expanded="false" data-section="financial-aid">
+    <h2>Financial Aid</h2>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="section-content">
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How do I Apply for financial aid?</div>
+      <div class="faq-answer">
+        <p>A limited number of Welfare Grants are given to students who are experiencing severe financial hardships. Grants are available for: tuition fees, minor medical expenses, bus fares, textbooks, equipment, boarding and teaching practice or seminars/workshops. You can apply for a Welfare Grant once you have paid your Enrolment Commitment Deposit. Applications are open after the Census Date each semester, and students can apply throughout the academic year. The application form (Grant Form) is made available on the University's website before the beginning of a new academic year.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How often can I apply for Welfare Grants?</div>
+      <div class="faq-answer">
+        <p>Students are eligible for one assistance per academic year.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How do I apply for the Welfare Meal Programme?</div>
+      <div class="faq-answer">
+        <p>The Welfare Meal Progamme application period opens at the beginning of the academic year and closes at the first Census Date. Students are required to apply for an NCB MasterCard to access the funds ($10,000.00) that will be disbursed on a monthly basis. The application form (Meal Programme Form) is made available on the University's website before the beginning of a new academic year.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What is required to apply for the Welfare Grant or Meal Programme?</div>
+      <div class="faq-answer">
+        <p>Applicants must demonstrate financial need. They are required to complete the prescribed form ensuring the Reference Affidavit section of the form is completed, signed and stamped by a Minister of Religion, Justice of the Peace, UTech Lecturer/ Senior Manager, Medical Doctor, Resident Manager or Special Needs Assistant (must be a special need student).</p>
+        
+        <p><strong>Documents required with application forms</strong></p>
+        
+        <p><strong>Welfare Grant-</strong> copy of valid UTech student ID, pay slips for all salary-based questions</p>
+        <ol>
+          <li>Tuition- Printout of all outstanding balance from the Department of Student Financing</li>
+          <li>On campus Boarding- Fee Breakdown from the Accommodation Unit</li>
+          <li>Textbooks/Supplies/Equipment- Invoice from Supplier/Company in which you intend to purchase the supplies from.</li>
+          <li>Medical Expenses – A letter from the Doctor with requisition</li>
+          <li>Teaching Practice – A letter from the faculty stating that the student is on teaching practice.</li>
+          <li>Field Trip/Study Tour – A letter from the lecturer stating they are part of the study tour.</li>
+        </ol>
+        
+        <p><strong>Meal Programme-</strong> copy of valid UTech student ID, pay slips for all salary-based questions.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <div class="section-header" aria-expanded="false" data-section="earn-study">
+    <h2>Earn And Study</h2>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="section-content">
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">Are students allowed to work on campus during the semester?</div>
+      <div class="faq-answer">
+        <p>All registered students are eligible for on campus employment. Employment is provided for students across campuses (Papine, Montego Bay, Slipe Road, Authur Wint Drive) through the Earn and Study Programme.</p>
+        <p>Work is scheduled to avoid conflict with the students' academic performance. Students who wish to participate in the Earn and Study Programme may choose one of the following options:</p>
+        
+        <p><strong>Option 1</strong> – Working in Semesters 1 & 2 (50 hrs/fortnight for both semesters 1& 2) part-time</p>
+        <p><strong>Option 2</strong> – Working in the summer session (40 hrs/week for 14 weeks) fulltime</p>
+        
+        <p>Please note the following:</p>
+        <ul>
+          <li>First (1st) year students are NOT allowed to work in Semesters 1 & 2 but can work in the summer session of their first (1st) year.</li>
+          <li>Final year students are NOT allowed to work in Semesters 1 & 2 but can work in the summer session of their final year.</li>
+        </ul>
+        
+        <p>Application forms are made available online before the start of each Programme, and the application periods for "Earn and Study" are as follows:</p>
+        <ul>
+          <li>Semesters I & II – August.</li>
+          <li>Summer Session – March.</li>
+        </ul>
+        
+        <p>Earn and Study currently pays $350.00/hr</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What documents are required when applying for Earn and Study?</div>
+      <div class="faq-answer">
+        <ul>
+          <li>A valid Student ID</li>
+          <li>Your progress report</li>
+          <li>An NCB MasterCard (via UTech)</li>
+        </ul>
+        
+        <p><strong>NB:</strong> Payments are made to the NCB MasterCard only. Students are required to apply for an NCB MasterCard when submitting their application for the Earn and Study Programme. NCB MasterCard application forms are available at the Student Services front desk. If you already have an NCB MasterCard through UTech, having applied for one for the Meal Programme or from working on the Earn & Study Programme, there is no need to apply for a new one.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <div class="section-header" aria-expanded="false" data-section="accommodations">
+    <h2>Accommodations</h2>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="section-content">
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">Do students have to live on campus?</div>
+      <div class="faq-answer">
+        <p>No. The decision to reside on campus is solely the choice of the student.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">Are there dorms on campus?</div>
+      <div class="faq-answer">
+        <p>The University currently provides a limited number of residential facilities for full-time students. There are seven halls of residence that are assigned to female and male students. Interested persons are required to complete the Boarding Application and return it to the Front Desk of the Student Services Department or via email at boarding4utech.edu.jm. The Accommodation Office also assists students in finding affordable and comfortable off-campus accommodation.</p>
+        <p>For further information kindly contact the Accommodation Office, Students Services Building, extension 2841, between the hours of 8:00 a.m. and 4:00 p.m. Monday to Friday or via email at: boarding4utech.edu.jm</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">If I live on Dorm, Do I have to leave during Holidays?</div>
+      <div class="faq-answer">
+        <p>The fees you pay cover the semester period. Therefore, students are asked to evacuate the dorm at the end of a semester period. Should you require accommodation after the semester period, contact the Accommodation Office, Students Services Building, extension 2841, between the hours of 8:00 a.m. and 4:00 p.m. Monday to Friday or via email at: boarding4utech.edu.jm</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">Do Males and Females share Facilities?</div>
+      <div class="faq-answer">
+        <p>Males and Females do not share facilities.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What about students' safety on campus?</div>
+      <div class="faq-answer">
+        <p>Students' safety and the security of the University are the primary concerns of Administration. Security Guards are on patrol 24 hours seven days per week. There are also several electronic security systems in place.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How do international students apply?</div>
+      <div class="faq-answer">
+        <p>They follow the same procedure as local students. For further information you can contact the International Students' Office at (876)-970-5194/5179 or e-mail jsinclair@utech.edu.jm.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <div class="section-header" aria-expanded="false" data-section="student-records">
+    <h2>Student Records Office</h2>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="section-content">
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How do I get a letter to verify that I am a registered student at the University?</div>
+      <div class="faq-answer">
+        <p>The Student Records Office prepares and dispatches transcripts, statements, status letters and other student academic records, and provides external organizations with information relating to students' and alumni status, in accordance with approved procedures. The office is on the Ground Floor of the Administration Building. For further assistance please send an email to studentrecords@utech.edu.jm.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How do I apply for an Academic Record?</div>
+      <div class="faq-answer">
+        <p>A request for an academic record, such as a transcript or status letter is made online. Visit the website and select the Online Academic Record Request System.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <div class="section-header" aria-expanded="false" data-section="semesterisation">
+    <h2>Semesterisation/Timetable</h2>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="section-content">
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What is semisterisation?</div>
+      <div class="faq-answer">
+        <p>This enables delivery of modules in undergraduate programmes in a way that permits flexible scheduling and improved accessibility for enrolment. It offers students some flexibility in selecting modules and allows them to pursue studies at their desired pace. Additionally, semesterisation fosters cross-faculty integration amongst students and promotes efficient utilization of the University's resources.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What is a progress report?</div>
+      <div class="faq-answer">
+        <p>A statement detailing a student's academic performance for a semester or session, issued upon request at the College or Faculty.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How long does each programme last?</div>
+      <div class="faq-answer">
+        <p>Students enrolled for undergraduate courses of study will be allowed a maximum of seven years to complete.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <div class="section-header" aria-expanded="false" data-section="add-drop">
+    <h2>Add/Drop Process</h2>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="section-content">
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">When does the Add/Drop period begins?</div>
+      <div class="faq-answer">
+        <p>The period begins at the start of registration and continues until the second week of classes for semester 1 (SEM 1) and semester 2 (SEM 2) or the first week of classes for semester 3. The Add/Drop period begins at the start of registration and continues until the second week of classes for semester one (SEM1) and semester two (SEM2) or the first week of classes for semester three (summer).</p>
+        <p>Dropping a module after being enrolled will result in the dropped module being removed from your academic record, including the charges from your account balance.</p>
+        <p>Adding a module after being enrolled will result in the cost of this module being charged to your account in the absence of a waiver from the Registrar's Office.</p>
+        <p>Adding and dropping modules after the Add/Drop period ends is not allowed.</p>
+        <p>You should consult your Academic Advisor before adding or dropping a module.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What is the requirement to qualify for Add/Drop?</div>
+      <div class="faq-answer">
+        <p>You must be a currently registered student to access the Add/Drop platform.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What is the procedure to Add/Drop a module?</div>
+      <div class="faq-answer">
+        <p>Go to the University's website and select the link that says <em>Online Add/Drop</em>. Put in the necessary information needed. Click the 'help' option for a demonstration of how it is to be done if problems arise.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <div class="section-header" aria-expanded="false" data-section="examination">
+    <h2>Examination</h2>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="section-content">
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What procedures should be taken for a person who is sick and is unable to sit his/her in-course test or final exams?</div>
+      <div class="faq-answer">
+        <p>Submit a medical certificate to the College or Faculty through the University's Health Centre.</p>
+        <p>The certificate may be obtained from a medical practitioner or your medical practitioner. The medical practitioner is required to send a confidential medical report using the designated form to a medical practitioner or UTech Medical Centre. Forms should be taken to the University Medical Centre within five working days of the missed examination. Certificates received over this time period will NOT be considered.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What do I need to sit an end-of-semester and summer session examination?</div>
+      <div class="faq-answer">
+        <p>Your examination Card and your valid UTech ID card.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <div class="section-header" aria-expanded="false" data-section="exemption">
+    <h2>Exemption</h2>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="section-content">
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What is an exemption?</div>
+      <div class="faq-answer">
+        <p>It is (a) the award of credits for workplace or professionally certified experience where the learning outcomes are deemed equivalent to those prescribed in a UTech, Ja. module, and/or (b) the award of credits for equivalent module successfully pursued at an approved institution, which were not considered during the initial application to the course of study.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What is the credit limit and acceptability for exemptions?</div>
+      <div class="faq-answer">
+        <ul>
+          <li>Students are expected to complete at least fifty percent (50%) of the course of study as registered students of the university, including 60% of levels 3 and 4 modules to receive a university award.</li>
+          <li>A student will only be allowed one exemption from a cooperative Education module in any course of study.</li>
+          <li>To be eligible for exemption, a module must have been completed within five years prior to the year of application for module exemption, in a UTech course of study or at another approved/accredited tertiary institution.</li>
+          <li>The related work experience in industry must be acquired for a period as specified by the respective school.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What is the procedure for applying for an exemption?</div>
+      <div class="faq-answer">
+        <ul>
+          <li>Complete the Application for Module Exemption form, which is available in the Faculty/College Student Affairs Office. Exemption for service modules must be done on a separate form.</li>
+          <li>Submit the completed form(s) to the Faculty/College Student Affairs Office along with all supporting documentation (including module description, transcript, syllabus, and statement of achievement and level achieved) no later than two weeks prior to the start of the semester in which the exemption is being sought. If the request for exemption is based on related work experience in industry, also submit verification letter with job description attached. Further, if the student is the proprietor of the business in which the experience is gained, submit supporting documentation that has been notarized.</li>
+          <li>The appropriate Subject leader/Programme Director/Module Coordinator will evaluate the application (for comparability of the quality/suitability of the experience/module). For work-related experience, the Programme takes a Challenge Examination or attend an interview before arriving at a final decision.</li>
+        </ul>
+        <p>The Faculty/College Student Affairs Office will inform the student in writing the result of the evaluation by the end of the fourth week of classes. If exemption is granted, the student is not required to complete the Add/Drop form unless he/she wishes to add other module(s).</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <div class="section-header" aria-expanded="false" data-section="centre-arts">
+    <h2>Centre for the Arts</h2>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="section-content">
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What are the available services at the Centre for the Arts?</div>
+      <div class="faq-answer">
+        <ol>
+          <li>Theatre Productions</li>
+          <li>Exhibitions and Showcases</li>
+          <li>Concerts</li>
+          <li>Workshops/ Seminars</li>
+          <li>Tours of the Caribbean Sculpture Park</li>
+          <li>Student Presentations and Productions (Conditions apply)</li>
+          <li>Video shoots (Conditions apply)</li>
+          <li>Facility Rentals</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What is the procedure to access the services at the Centre for the Arts?</div>
+      <div class="faq-answer">
+        <ol>
+          <li>Submit a written request to the Centre for the Arts to tentatively reserve the desired date and time for your event. The correspondence must outline details of your activity. (Letter, memo or email will suffice.)</li>
+          <li>You will receive a written response from the Centre about the space's availability for the stated time and purpose. This response will address the contribution to the use of the park where applicable.</li>
+          <li>Proceed to complete application form and obtain the required signatures for approval.</li>
+          <li>Return original copy of the completed application form to the Centre for the Arts.</li>
+          <li>You will receive an invoice to process contribution payment where applicable. Account information for payment is outlined on the invoice provided.</li>
+          <li>Submit proof of payment to the Centre prior to the event.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What are the electives to pursue at the Centre for the Arts?</div>
+      <div class="faq-answer">
+        <p>The electives include:</p>
+        <ol>
+          <li>Introduction to Dance</li>
+          <li>Introduction to Drama & Theatre Arts</li>
+          <li>Introduction to Music Theory and Performance</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What are the extracurricular programmes offered through the Centre for the Arts?</div>
+      <div class="faq-answer">
+        <ol>
+          <li>Choir</li>
+          <li>Drumming</li>
+          <li>Steel Pan</li>
+          <li>Dance</li>
+          <li>Visual Arts</li>
+          <li>Instrumental Band</li>
+          <li>Drama & Theatre Arts</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">Who qualifies to participate in the extracurricular programmes at the Centre for the Arts?</div>
+      <div class="faq-answer">
+        <p>The extracurricular programmes are made available to students, staff and the wider Papine Community, who are interested in self-expression through the arts.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What are the costs for the services offered through the Centre for the Arts?</div>
+      <div class="faq-answer">
+        <p>Rates will vary dependent on the nature of the event to include duration of usage, concession considerations for Internal Users, Cultural Stakeholders and UTech, Ja. Students.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What is the contact information for the Centre for the Arts?</div>
+      <div class="faq-answer">
+        <p>
+          Centre for the Arts<br>
+          Advancement Division<br>
+          University of Technology, Jamaica<br>
+          237 Old Hope Road Kingston 6,<br>
+          Jamaica W.I.<br>
+          Telephone: 876-970-5019<br>
+          Email: culture@utech.edu.jm, cfa.utechjamaica@gmail.com
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <div class="section-header" aria-expanded="false" data-section="other-faq">
+    <h2>Other Frequently Asked Questions</h2>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="section-content">
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How do I take a break from my studies?</div>
+      <div class="faq-answer">
+        <p>(a) Complete a CSAAC/FSAAC form for a leave of absence or withdrawal.</p>
+        <p>(b) Submit to the College/Faculty or the Students Relations Office, Student Services Building.</p>
+        <p><strong>Note:</strong> Normally, approval is given for only one year. This time period will be excluded from the calculation of the time taken to complete your programme.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What is the procedure for re-entering the university/a course of study after a period of absence?</div>
+      <div class="faq-answer">
+        <p>(i) Complete the Application for Readmission form.</p>
+        <p>(ii) Submit to the Admissions Office.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">When do I register as a student of the university?</div>
+      <div class="faq-answer">
+        <p>Registration takes place 3 times per year: Semester1, July-August, Semester 2, January and Summer session.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">Where do I obtain my exam results?</div>
+      <div class="faq-answer">
+        <p>E:vision Student Portal</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">With whom do I speak regarding omission of modules from my diet?</div>
+      <div class="faq-answer">
+        <p>You may speak with the student affairs assistant in your college/faculty/school office.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">Can I re-do a module without attending classes?</div>
+      <div class="faq-answer">
+        <p>No. you must redo the module, i.e., register for the failed module, attend classes, complete all the coursework and sit the final exam if applicable.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">Under what conditions may I obtain a grade review?</div>
+      <div class="faq-answer">
+        <p>You may obtain a grade review only if there were extenuating circumstances not known to the examiners, or evidence of irregularities in the conduct of the examination.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How do I apply for a grade review?</div>
+      <div class="faq-answer">
+        <ul>
+          <li>(i) Complete the Application for Grade Review form.</li>
+          <li>(ii) Pay the $650 per credit fee at Accounts Receivable.</li>
+          <li>(iii) Submit the form and receipt to your College/Faculty/School office.</li>
+        </ul>
+        <p>The submission of the form and receipt should take place during the 2-week period following the posting of results.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How do I effect a transfer?</div>
+      <div class="faq-answer">
+        <p>A transfer takes place when there is a change from one campus or course specialization to another. Application should be submitted to the applicant's Programme Director six (6) weeks before the beginning of the Semester using the "Request for transfer" form.</p>
+        <ul>
+          <li>(i) Complete the "Request for Transfer form", in Triplicate. The form is available in your College/Faculty/School office and the University's website.</li>
+          <li>(ii) Submit to your current Head of School before July 31.</li>
+        </ul>
+        <p><strong>Note:</strong> Transfers are not automatic and will be influenced by a variety of factors including your qualifications, academic status, aptitude for the discipline and space availability.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How do I apply for an academic record (transcript)?</div>
+      <div class="faq-answer">
+        <p>A transcript is an academic record of the programme and grades for modules (passed/failed) taken by a student and any certification earned.</p>
+        <p>(i) Visit the website and select Online Academic Record Request System</p>
+        <p>(ii) Pay the fee, (Transcript, JA$1,000, Status letter/Statement, JA$1000), at Accounts Receivables.</p>
+        <p><strong>Please note:</strong> If your ID number is alphanumeric (eg. S142) you are only able to pay at the Accounts Department. For strictly numeric Id numbers, you may pay at the Paymaster or Bill Express agency.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How do I apply for a change of name?</div>
+      <div class="faq-answer">
+        <p>Complete a Change of Information form available at the front desk of the Student Records Office is located within the Administration Building, at any time during your tenure.</p>
+        <p><strong>Important Note:</strong> A name change cannot be effected after a student has left the University.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How do I replace my ID card?</div>
+      <div class="faq-answer">
+        <p>(i) Pay the $1,000 fee at Accounts Receivable</p>
+        <p>(ii) Take the receipt to the Admissions Office, which will make arrangements with the Safety & Security Department for a replacement.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How do I correct information on an ID card?</div>
+      <div class="faq-answer">
+        <p>Report the matter to the Admissions Office, which will make arrangements with the Safety & Security Department for a replacement card to be done.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How do I prepare for graduation?</div>
+      <div class="faq-answer">
+        <p>(i) Register on the graduation link and follow the instructions on the website.</p>
+        <p>(ii) Make payment according to the respective service that you require.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">How many modules do I need to complete in order to graduate?</div>
+      <div class="faq-answer">
+        <p>Modules are indicated as being at Levels 1–4, based on the difficulty/complexity of the modules and where they are sequenced in the Course of Study. Each student must complete the required number of credits at every Level in order to graduate. Please consult with your College or Faculty for further information.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">Am I allowed to complete my course of study before the prescribed timeframe?</div>
+      <div class="faq-answer">
+        <p>The completion of a course of study in a shorter timeframe based on a students' decision to increase his/her credit load in a given academic year as approved by the Academic Advisor or Programme Director.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What is academic advisement?</div>
+      <div class="faq-answer">
+        <p>Academic advisement is a structured support system available to every student when making important academic decisions related to his/her course, available options, electives, and academic progress in general. Academic advisement is managed in each Faculty or College, by the Faculty or College Academic Advisement Unit (FAAU/CAAU).</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What is the faculty / college academic advisement unit (FAAU /CAAU)?</div>
+      <div class="faq-answer">
+        <p>The FAAU/CAAU serves as the hub of the advisement system in each College or Faculty and monitors the academic advisement system to assist students on academic probation restructure their programme diets. Consultations are held with students who were referred to the FAAU/CAAU by their Academic Advisor for more intensive academic advisement.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" aria-expanded="false">What happens if a student is underperforming?</div>
+      <div class="faq-answer">
+        <p>A student must maintain a satisfactory academic standing to progress from year to year and level to level in a given Course of Study. Students who fail to make satisfactory progress will be placed on academic probation.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  
+  document.querySelectorAll('.section-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const section = header.parentElement;
+      const content = section.querySelector('.section-content');
+      const isExpanded = header.getAttribute('aria-expanded') === 'true';
+      
+      
+      header.setAttribute('aria-expanded', !isExpanded);
+      content.style.display = isExpanded ? 'none' : 'block';
+      
+      
+      const icon = header.querySelector('.toggle-icon');
+      if (icon) icon.textContent = isExpanded ? '+' : '×';
+    });
+  });
+
+  
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+      const answer = question.nextElementSibling;
+      const isExpanded = question.getAttribute('aria-expanded') === 'true';
+      
+     
+      question.setAttribute('aria-expanded', !isExpanded);
+      answer.style.display = isExpanded ? 'none' : 'block';
+    });
+  });
+
+  
+  document.querySelector('.faq-search').addEventListener('input', function() {
+    const searchTerm = this.value.trim().toLowerCase();
+    const allSections = document.querySelectorAll('.faq-section');
+    const noResultsMsg = document.querySelector('.no-results');
+    let hasMatches = false;
+
+    allSections.forEach(section => {
+      const sectionHeader = section.querySelector('.section-header h2').textContent.toLowerCase();
+      const questions = section.querySelectorAll('.faq-item');
+      let sectionHasMatches = false;
+
+      
+      questions.forEach(item => {
+        const questionText = item.querySelector('.faq-question').textContent.toLowerCase();
+        const answerText = item.querySelector('.faq-answer').textContent.toLowerCase();
+        const isMatch = questionText.includes(searchTerm) || answerText.includes(searchTerm);
+        
+        item.style.display = isMatch ? 'block' : 'none';
+        if (isMatch) {
+          sectionHasMatches = true;
+          hasMatches = true;
+        }
+      });
+
+      
+      section.style.display = (sectionHasMatches || searchTerm === '') ? 'block' : 'none';
+      
+      
+      if (sectionHasMatches) {
+        section.querySelector('.section-header').setAttribute('aria-expanded', 'true');
+        section.querySelector('.section-content').style.display = 'block';
+      }
+    });
+
+    
+    noResultsMsg.style.display = hasMatches || searchTerm === '' ? 'none' : 'block';
+  });
+</script>
